@@ -46,13 +46,13 @@ const schema = {
     born: 'Date',
     books: {
       reference: '1:m',
-      fk: 'author',
+      mappedBy: 'author',
       type: 'Book',
     },
     favouriteBook: {
       reference: 'm:1',
       type: 'Book',
-      fk: 'id',
+      inversedBy: 'id',
     },
   },
   path: __filename,

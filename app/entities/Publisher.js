@@ -28,7 +28,7 @@ const schema = {
     },
     books: {
       reference: '1:m',
-      fk: 'publisher',
+      mappedBy: 'publisher',
       type: 'Book',
     },
     type: {
