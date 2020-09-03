@@ -1,7 +1,6 @@
 'use strict';
 
-const { Collection, ReferenceType } = require('mikro-orm');
-const { MetadataStorage } = require('mikro-orm/dist/metadata');
+const { Collection, ReferenceType, EntitySchema, wrap } = require('@mikro-orm/core');
 
 /**
  * @property {ObjectID} _id
@@ -13,9 +12,7 @@ class BaseEntity {
   constructor() {
     this.createdAt = new Date();
     this.updatedAt = new Date();
-
-    const meta = MetadataStorage.getMetadata(this.constructor.name);
-    const props = meta.properties;
+    const props = wrap(this).__meta.properties;
 
     Object.keys(props).forEach(prop => {
       if ([ReferenceType.ONE_TO_MANY, ReferenceType.MANY_TO_MANY].includes(props[prop].reference)) {
@@ -26,20 +23,14 @@ class BaseEntity {
 
 }
 
-const schema = {
+const schema = new EntitySchema({
+  name: 'BaseEntity',
   properties: {
-    _id: {
-      primary: true,
-      type: 'ObjectID',
-    },
-    createdAt: 'Date',
-    updatedAt: {
-      type: 'Date',
-      onUpdate: () => new Date(),
-    },
+    _id: { primary: true, type: 'ObjectID' },
+    createdAt: { type: 'Date' },
+    updatedAt: { type: 'Date', onUpdate: () => new Date() },
   },
-  path: __filename,
-};
+});
 
 module.exports.BaseEntity = BaseEntity;
 module.exports.entity = BaseEntity;

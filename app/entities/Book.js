@@ -4,7 +4,7 @@ const { Publisher } = require('./Publisher');
 const { Author } = require('./Author');
 const { BookTag } = require('./BookTag');
 const { BaseEntity } = require('./BaseEntity');
-const { Collection } = require('mikro-orm');
+const { Collection, EntitySchema } = require('@mikro-orm/core');
 
 /**
  * @property {string} title
@@ -26,11 +26,11 @@ class Book extends BaseEntity {
 
 }
 
-const schema = {
-  name: 'Book',
+const schema = new EntitySchema({
+  class: Book,
   extends: 'BaseEntity',
   properties: {
-    title: 'string',
+    title: { type: 'string' },
     author: {
       reference: 'm:1',
       type: 'Author',
@@ -48,8 +48,7 @@ const schema = {
       type: 'BookTag',
     },
   },
-  path: __filename,
-};
+});
 
 module.exports.Book = Book;
 module.exports.entity = Book;

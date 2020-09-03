@@ -2,8 +2,8 @@
 
 const express = require('express');
 const { AuthorController, BookController } = require('./controllers');
-const { EntityManager, EntityRepository, JavaScriptMetadataProvider, MikroORM, RequestContext } = require('mikro-orm');
-const { Author, Book, Publisher, BookTag, BaseEntity } = require('./entities');
+const { EntityManager, EntityRepository, MikroORM, RequestContext } = require('@mikro-orm/core');
+const { Author, Book } = require('./entities');
 
 /**
  * @property {MikroORM} orm
@@ -18,13 +18,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 (async () => {
-  DI.orm = await MikroORM.init({
-    entities: [Author, Book, Publisher, BookTag, BaseEntity],
-    dbName: 'mikro-orm-express-js',
-    metadataProvider: JavaScriptMetadataProvider,
-    logger: console.log.bind(console),
-    debug: true,
-  });
+  DI.orm = await MikroORM.init();
   DI.em = DI.orm.em;
   DI.authorRepository = DI.orm.em.getRepository(Author.entity);
   DI.bookRepository = DI.orm.em.getRepository(Book.entity);

@@ -1,6 +1,6 @@
 'use strict';
 
-const { Collection } = require('mikro-orm');
+const { Collection, EntitySchema } = require('@mikro-orm/core');
 const { Book } = require('./Book');
 const { BaseEntity } = require('./BaseEntity');
 
@@ -21,11 +21,11 @@ class BookTag extends BaseEntity {
 
 }
 
-const schema = {
-  name: 'BookTag',
+const schema = new EntitySchema({
+  class: BookTag,
   extends: 'BaseEntity',
   properties: {
-    name: 'string',
+    name: { type: 'string' },
     books: {
       reference: 'm:n',
       owner: false,
@@ -33,8 +33,7 @@ const schema = {
       type: 'Book',
     },
   },
-  path: __filename,
-};
+});
 
 module.exports.BookTag = BookTag;
 module.exports.entity = BookTag;

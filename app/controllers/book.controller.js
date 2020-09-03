@@ -1,6 +1,6 @@
 'use strict';
 
-const { QueryOrder } = require('mikro-orm');
+const { QueryOrder } = require('@mikro-orm/core');
 const { Router } = require('express');
 const server = require('../server');
 const { Book } = require('../entities');
