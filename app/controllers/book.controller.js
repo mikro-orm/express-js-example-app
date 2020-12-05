@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const book = await server.DI.bookRepository.findOne(req.params.id, ['author']);
+    const book = await server.DI.bookRepository.findOne(+req.params.id, ['author']);
 
     if (!book) {
       return res.status(404).json({ message: 'Book not found' });
@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
   try {
     const book = new Book(req.body.title, req.body.author);
     book.assign(req.body);
-    await server.DI.bookRepository.persist(book);
+    await server.DI.bookRepository.persist(book).flush();
 
     res.json(book);
   } catch (e) {
@@ -45,14 +45,14 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const book = await server.DI.bookRepository.findOne(req.params.id);
+    const book = await server.DI.bookRepository.findOne(+req.params.id);
 
     if (!book) {
       return res.status(404).json({ message: 'Book not found' });
     }
 
     book.assign(req.body);
-    await server.DI.bookRepository.persist(book);
+    await server.DI.bookRepository.flush();
 
     res.json(book);
   } catch (e) {
