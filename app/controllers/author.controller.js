@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
   try {
     const author = new Author(req.body.name, req.body.email);
     author.assign(req.body);
-    await server.DI.authorRepository.persist(author);
+    await server.DI.authorRepository.persist(author).flush();
 
     res.json(author);
   } catch (e) {
@@ -45,14 +45,14 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const author = await server.DI.authorRepository.findOne(req.params.id);
+    const author = await server.DI.authorRepository.findOne(+req.params.id);
 
     if (!author) {
       return res.status(404).json({ message: 'Author not found' });
     }
 
     author.assign(req.body);
-    await server.DI.authorRepository.persist(author);
+    await server.DI.authorRepository.flush();
 
     res.json(author);
   } catch (e) {
