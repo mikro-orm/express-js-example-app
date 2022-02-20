@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "express-promise-router": "^3.0.3",
+    "express-promise-router": "^4.0.0",
     "@mikro-orm/core": "^4.0.0-rc.6",
     "@mikro-orm/mongodb": "^4.0.0-rc.6",
     "@mikro-orm/mongo-highlighter": "^1.0.0"
