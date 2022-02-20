@@ -1,15 +1,15 @@
 'use strict';
 
-const { Collection, EntitySchema } = require('@mikro-orm/core');
-const { Book } = require('./Book');
-const { BaseEntity } = require('./BaseEntity');
+import { Collection, EntitySchema } from '@mikro-orm/core';
+import { Book } from './Book.js';
+import { BaseEntity } from './BaseEntity.js';
 
 /**
  * @property {number} id
  * @property {string} name
  * @property {Collection<Book>} books
  */
-class BookTag extends BaseEntity {
+export class BookTag extends BaseEntity {
 
   /**
    * @param {string} name
@@ -21,7 +21,7 @@ class BookTag extends BaseEntity {
 
 }
 
-const schema = new EntitySchema({
+export const schema = new EntitySchema({
   class: BookTag,
   extends: 'BaseEntity',
   properties: {
@@ -34,7 +34,3 @@ const schema = new EntitySchema({
     },
   },
 });
-
-module.exports.BookTag = BookTag;
-module.exports.entity = BookTag;
-module.exports.schema = schema;

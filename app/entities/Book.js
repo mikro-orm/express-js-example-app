@@ -1,10 +1,10 @@
 'use strict';
 
-const { Publisher } = require('./Publisher');
-const { Author } = require('./Author');
-const { BookTag } = require('./BookTag');
-const { BaseEntity } = require('./BaseEntity');
-const { Collection, EntitySchema } = require('@mikro-orm/core');
+import { Collection, EntitySchema } from '@mikro-orm/core';
+import { Publisher } from './Publisher.js';
+import { Author } from './Author.js';
+import { BookTag } from './BookTag.js';
+import { BaseEntity } from './BaseEntity.js';
 
 /**
  * @property {string} title
@@ -12,7 +12,7 @@ const { Collection, EntitySchema } = require('@mikro-orm/core');
  * @property {Publisher} publisher
  * @property {Collection<BookTag>} tags
  */
-class Book extends BaseEntity {
+export class Book extends BaseEntity {
 
   /**
    * @param {string} title
@@ -26,7 +26,7 @@ class Book extends BaseEntity {
 
 }
 
-const schema = new EntitySchema({
+export const schema = new EntitySchema({
   class: Book,
   extends: 'BaseEntity',
   properties: {
@@ -34,12 +34,11 @@ const schema = new EntitySchema({
     author: {
       reference: 'm:1',
       type: 'Author',
-      fk: 'id',
     },
     publisher: {
       reference: 'm:1',
       type: 'Publisher',
-      fk: 'id',
+      nullable: true,
     },
     tags: {
       reference: 'm:n',
@@ -49,7 +48,3 @@ const schema = new EntitySchema({
     },
   },
 });
-
-module.exports.Book = Book;
-module.exports.entity = Book;
-module.exports.schema = schema;

@@ -1,25 +1,26 @@
 'use strict';
 
-const { QueryOrder } = require('@mikro-orm/core');
-const { Router } = require('express');
-const server = require('../server');
-const { Book } = require('../entities');
+import { QueryOrder, wrap } from '@mikro-orm/core';
+import { Router } from 'express';
+import { Book } from '../entities/index.js';
+import { DI } from '../server.js';
 
 const router = Router();
 
 router.get('/', async (req, res) => {
-  const books = await server.DI.bookRepository.findAll(['author'], { title: QueryOrder.DESC }, 20);
+  const books = await DI.bookRepository.findAll({
+    populate: ['author'],
+    orderBy: { title: QueryOrder.DESC },
+    limit: 20,
+  });
   res.json(books);
 });
 
 router.get('/:id', async (req, res) => {
   try {
-    const book = await server.DI.bookRepository.findOne(+req.params.id, ['author']);
-
-    if (!book) {
-      return res.status(404).json({ message: 'Book not found' });
-    }
-
+    const book = await DI.bookRepository.findOneOrFail(req.params.id, {
+      populate: ['author'],
+    });
     res.json(book);
   } catch (e) {
     return res.status(400).json({ message: e.message });
@@ -33,9 +34,9 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    const book = new Book(req.body.title, req.body.author);
-    book.assign(req.body);
-    await server.DI.bookRepository.persist(book).flush();
+    const book = DI.em.create(Book, req.body);
+    wrap(book.author, true).__initialized = true;
+    await DI.em.persist(book).flush();
 
     res.json(book);
   } catch (e) {
@@ -45,14 +46,9 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const book = await server.DI.bookRepository.findOne(+req.params.id);
-
-    if (!book) {
-      return res.status(404).json({ message: 'Book not found' });
-    }
-
-    book.assign(req.body);
-    await server.DI.bookRepository.flush();
+    const book = await DI.bookRepository.findOneOrFail(req.params.id);
+    wrap(book).assign(req.body);
+    await DI.bookRepository.flush();
 
     res.json(book);
   } catch (e) {
@@ -60,4 +56,4 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-module.exports.BookController = router;
+export { router as BookController };

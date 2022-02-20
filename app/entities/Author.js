@@ -1,8 +1,8 @@
 'use strict';
 
-const { Collection, EntitySchema } = require('@mikro-orm/core');
-const { Book } = require('./Book');
-const { BaseEntity } = require('./BaseEntity');
+import { Collection, EntitySchema } from '@mikro-orm/core';
+import { Book } from './Book.js';
+import { BaseEntity } from './BaseEntity.js';
 
 /**
  * @property {string} name
@@ -16,7 +16,7 @@ const { BaseEntity } = require('./BaseEntity');
  * @property {number} version
  * @property {string} versionAsString
  */
-class Author extends BaseEntity {
+export class Author extends BaseEntity {
 
   /**
    * @param {string} name
@@ -34,16 +34,16 @@ class Author extends BaseEntity {
 Author.beforeDestroyCalled = 0;
 Author.afterDestroyCalled = 0;
 
-const schema = new EntitySchema({
+export const schema = new EntitySchema({
   class: Author,
   extends: 'BaseEntity',
   properties: {
     name: { type: 'string' },
     email: { type: 'string' },
-    age: { type: 'number' },
+    age: { type: 'number', nullable: true },
     termsAccepted: { type: 'boolean' },
-    identities: { type: 'string[]' },
-    born: { type: 'Date' },
+    identities: { type: 'string[]', nullable: true },
+    born: { type: 'Date', nullable: true },
     books: {
       reference: '1:m',
       mappedBy: 'author',
@@ -52,10 +52,7 @@ const schema = new EntitySchema({
     favouriteBook: {
       reference: 'm:1',
       type: 'Book',
+      nullable: true,
     },
   },
 });
-
-module.exports.Author = Author;
-module.exports.entity = Author;
-module.exports.schema = schema;

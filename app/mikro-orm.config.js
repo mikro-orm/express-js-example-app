@@ -1,10 +1,5 @@
-const { MongoHighlighter } = require('@mikro-orm/mongo-highlighter');
-const { Author, Book, BookTag, Publisher, BaseEntity } = require('./entities');
+import { MongoHighlighter } from '@mikro-orm/mongo-highlighter';
 
-module.exports = {
-  type: 'mongo',
-  entities: [Author, Book, Publisher, BookTag, BaseEntity],
-  dbName: 'mikro-orm-express-js',
+export default {
   highlighter: new MongoHighlighter(),
-  debug: true,
 };

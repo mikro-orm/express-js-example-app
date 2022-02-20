@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports.BaseEntity = require('./BaseEntity');
-module.exports.Author = require('./Author');
-module.exports.Publisher = require('./Publisher');
-module.exports.Book = require('./Book');
-module.exports.BookTag = require('./BookTag');
+export * from './BaseEntity.js';
+export * from './Author.js';
+export * from './Publisher.js';
+export * from './Book.js';
+export * from './BookTag.js';
