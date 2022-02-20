@@ -1,13 +1,13 @@
 'use strict';
 
-const { Collection, ReferenceType, EntitySchema, wrap } = require('@mikro-orm/core');
+import { Collection, ReferenceType, EntitySchema, wrap } from '@mikro-orm/core';
 
 /**
  * @property {ObjectID} _id
  * @property {Date} createdAt
  * @property {Date} updatedAt
  */
-class BaseEntity {
+export class BaseEntity {
 
   constructor() {
     this.createdAt = new Date();
@@ -23,7 +23,7 @@ class BaseEntity {
 
 }
 
-const schema = new EntitySchema({
+export const schema = new EntitySchema({
   name: 'BaseEntity',
   properties: {
     _id: { primary: true, type: 'ObjectID' },
@@ -31,7 +31,3 @@ const schema = new EntitySchema({
     updatedAt: { type: 'Date', onUpdate: () => new Date() },
   },
 });
-
-module.exports.BaseEntity = BaseEntity;
-module.exports.entity = BaseEntity;
-module.exports.schema = schema;

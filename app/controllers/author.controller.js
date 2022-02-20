@@ -1,20 +1,26 @@
 'use strict';
 
-const { QueryOrder } = require('@mikro-orm/core');
-const { Router } = require('express');
-const server = require('../server');
-const { Author } = require('../entities/Author');
+import { QueryOrder, wrap } from '@mikro-orm/core';
+import { Router } from 'express';
+import { DI } from '../server.js';
+import { Author } from '../entities/Author.js';
 
 const router = Router();
 
 router.get('/', async (req, res) => {
-  const authors = await server.DI.authorRepository.findAll(['books'], { name: QueryOrder.DESC }, 20);
+  const authors = await DI.authorRepository.findAll({
+    populate: ['books'],
+    orderBy: { name: QueryOrder.DESC },
+    limit: 20,
+  });
   res.json(authors);
 });
 
 router.get('/:id', async (req, res) => {
   try {
-    const author = await server.DI.authorRepository.findOne(req.params.id, ['books']);
+    const author = await DI.authorRepository.findOne(req.params.id, {
+      populate: ['books'],
+    });
 
     if (!author) {
       return res.status(404).json({ message: 'Author not found' });
@@ -33,9 +39,8 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    const author = new Author(req.body.name, req.body.email);
-    author.assign(req.body);
-    await server.DI.authorRepository.persist(author).flush();
+    const author = DI.em.create(Author, req.body);
+    await DI.em.persist(author).flush();
 
     res.json(author);
   } catch (e) {
@@ -45,14 +50,9 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const author = await server.DI.authorRepository.findOne(+req.params.id);
-
-    if (!author) {
-      return res.status(404).json({ message: 'Author not found' });
-    }
-
-    author.assign(req.body);
-    await server.DI.authorRepository.flush();
+    const author = await DI.authorRepository.findOneOrFail(req.params.id);
+    wrap(author).assign(req.body);
+    await DI.authorRepository.flush();
 
     res.json(author);
   } catch (e) {
@@ -60,4 +60,4 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-module.exports.AuthorController = router;
+export { router as AuthorController };
