@@ -27,7 +27,7 @@ export const schema = new EntitySchema({
   properties: {
     name: { type: 'string' },
     books: {
-      reference: 'm:n',
+      kind: 'm:n',
       owner: false,
       mappedBy: 'tags',
       type: 'Book',

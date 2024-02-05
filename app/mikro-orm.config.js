@@ -1,5 +1,7 @@
-import { MongoHighlighter } from '@mikro-orm/mongo-highlighter';
+import { defineConfig } from '@mikro-orm/better-sqlite';
+import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
 
-export default {
-  highlighter: new MongoHighlighter(),
-};
+export default defineConfig({
+  dbName: 'mikro-orm-express-js',
+  highlighter: new SqlHighlighter(),
+});

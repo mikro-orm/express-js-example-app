@@ -45,12 +45,12 @@ export const schema = new EntitySchema({
     identities: { type: 'string[]', nullable: true },
     born: { type: 'Date', nullable: true },
     books: {
-      reference: '1:m',
+      kind: '1:m',
       mappedBy: 'author',
       type: 'Book',
     },
     favouriteBook: {
-      reference: 'm:1',
+      kind: 'm:1',
       type: 'Book',
       nullable: true,
     },

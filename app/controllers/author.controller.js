@@ -8,7 +8,7 @@ import { Author } from '../entities/Author.js';
 const router = Router();
 
 router.get('/', async (req, res) => {
-  const authors = await DI.authorRepository.findAll({
+  const authors = await DI.authors.findAll({
     populate: ['books'],
     orderBy: { name: QueryOrder.DESC },
     limit: 20,
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const author = await DI.authorRepository.findOne(req.params.id, {
+    const author = await DI.authors.findOne(+req.params.id, {
       populate: ['books'],
     });
 
@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
 
   try {
     const author = DI.em.create(Author, req.body);
-    await DI.em.persist(author).flush();
+    await DI.em.flush();
 
     res.json(author);
   } catch (e) {
@@ -50,9 +50,9 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const author = await DI.authorRepository.findOneOrFail(req.params.id);
+    const author = await DI.authors.findOneOrFail(+req.params.id);
     wrap(author).assign(req.body);
-    await DI.authorRepository.flush();
+    await DI.em.flush();
 
     res.json(author);
   } catch (e) {

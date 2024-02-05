@@ -1,14 +1,12 @@
 import request from 'supertest';
-import expect from 'expect';
+import { expect } from 'expect';
 import { app, DI, server } from '../server.js';
 
-describe('author controller', () => {
+describe('book controller', () => {
 
   before(async () => {
-    DI.orm.config.set('dbName', 'express-test-db');
-    DI.orm.config.getLogger().setDebugMode(false);
-    await DI.orm.config.getDriver().reconnect();
-    await DI.orm.getSchemaGenerator().clearDatabase();
+    await DI.orm.reconnect({ dbName: ':memory:', debug: false });
+    await DI.orm.schema.createSchema();
   });
 
   after(async () => {

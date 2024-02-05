@@ -32,16 +32,16 @@ export const schema = new EntitySchema({
   properties: {
     title: { type: 'string' },
     author: {
-      reference: 'm:1',
+      kind: 'm:1',
       type: 'Author',
     },
     publisher: {
-      reference: 'm:1',
+      kind: 'm:1',
       type: 'Publisher',
       nullable: true,
     },
     tags: {
-      reference: 'm:n',
+      kind: 'm:n',
       owner: true,
       inversedBy: 'books',
       type: 'BookTag',

@@ -8,7 +8,7 @@ import { DI } from '../server.js';
 const router = Router();
 
 router.get('/', async (req, res) => {
-  const books = await DI.bookRepository.findAll({
+  const books = await DI.books.findAll({
     populate: ['author'],
     orderBy: { title: QueryOrder.DESC },
     limit: 20,
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const book = await DI.bookRepository.findOneOrFail(req.params.id, {
+    const book = await DI.books.findOneOrFail(+req.params.id, {
       populate: ['author'],
     });
     res.json(book);
@@ -35,8 +35,7 @@ router.post('/', async (req, res) => {
 
   try {
     const book = DI.em.create(Book, req.body);
-    wrap(book.author, true).__initialized = true;
-    await DI.em.persist(book).flush();
+    await DI.em.flush();
 
     res.json(book);
   } catch (e) {
@@ -46,9 +45,9 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const book = await DI.bookRepository.findOneOrFail(req.params.id);
+    const book = await DI.books.findOneOrFail(+req.params.id);
     wrap(book).assign(req.body);
-    await DI.bookRepository.flush();
+    await DI.em.flush();
 
     res.json(book);
   } catch (e) {
