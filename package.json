@@ -13,12 +13,12 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-promise-router": "^4.0.0",
-    "@mikro-orm/core": "^5.0.0",
-    "@mikro-orm/mongodb": "^5.0.0",
+    "@mikro-orm/core": "^6.0.0",
+    "@mikro-orm/mongodb": "^6.0.0",
     "@mikro-orm/mongo-highlighter": "^1.0.0"
   },
   "devDependencies": {
-    "@mikro-orm/cli": "^5.0.0",
+    "@mikro-orm/cli": "^6.0.0",
     "expect": "27.5.1",
     "mocha": "9.2.2",
     "nodemon": "^2.0.4",
