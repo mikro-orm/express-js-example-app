@@ -11,7 +11,7 @@
     "test": "mocha **/*.spec.js"
   },
   "dependencies": {
-    "express": "^4.18.2",
+    "express": "^4.19.2",
     "express-promise-router": "^4.1.1",
     "@mikro-orm/core": "^6.1.0",
     "@mikro-orm/better-sqlite": "^6.1.0",
