@@ -42,10 +42,10 @@
   resolved "https://registry.yarnpkg.com/@jest/diff-sequences/-/diff-sequences-30.0.1.tgz#0ededeae4d071f5c8ffe3678d15f3a1be09156be"
   integrity sha512-n5H8QLDJ47QqbCNn5SuFjCRDrOLEZ0h8vAHCK5RL9Ls7Xa8AQLa/YxAc9UjFqoEDM48muwtBGjtMY5cr0PLDCw==
 
-"@jest/expect-utils@30.1.0":
-  version "30.1.0"
-  resolved "https://registry.yarnpkg.com/@jest/expect-utils/-/expect-utils-30.1.0.tgz#f128e161e19e6841d025954047c487ae37d000cb"
-  integrity sha512-3anLWpBieOCIvDYkEoHTK3351znRkmtAiOyURPRwn3IIT2TLlwqkgl6P7wk5mxwW04MZvHHx/gw1qGb3VPDmLA==
+"@jest/expect-utils@30.1.1":
+  version "30.1.1"
+  resolved "https://registry.yarnpkg.com/@jest/expect-utils/-/expect-utils-30.1.1.tgz#f57553f708b445a8d20c5b365bc9c84f87cba2ac"
+  integrity sha512-5YUHr27fpJ64dnvtu+tt11ewATynrHkGYD+uSFgRr8V2eFJis/vEXgToyLwccIwqBihVfz9jwio+Zr1ab1Zihw==
   dependencies:
     "@jest/get-type" "30.1.0"
 
@@ -756,14 +756,14 @@ expand-template@^2.0.3:
   resolved "https://registry.yarnpkg.com/expand-template/-/expand-template-2.0.3.tgz#6e14b3fcee0f3a6340ecb57d2e8918692052a47c"
   integrity sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg==
 
-expect@30.1.0:
-  version "30.1.0"
-  resolved "https://registry.yarnpkg.com/expect/-/expect-30.1.0.tgz#c0d0c27e157df6bc7b8d8f6393cb4f9c5f8831f7"
-  integrity sha512-BjTOhEHlQVAXJqkgmxRt33ZbA8H+NLKpZ+Ff0qsFEOhPMNNcdJ160TocOSyiQS8ZNEUHXozg2ykBDboySPTSKQ==
+expect@30.1.1:
+  version "30.1.1"
+  resolved "https://registry.yarnpkg.com/expect/-/expect-30.1.1.tgz#165bbdf514880bc9d4377b5b73716a38ab97b2ad"
+  integrity sha512-OKe7cdic4qbfWd/CcgwJvvCrNX2KWfuMZee9AfJHL1gTYmvqjBjZG1a2NwfhspBzxzlXwsN75WWpKTYfsJpBxg==
   dependencies:
-    "@jest/expect-utils" "30.1.0"
+    "@jest/expect-utils" "30.1.1"
     "@jest/get-type" "30.1.0"
-    jest-matcher-utils "30.1.0"
+    jest-matcher-utils "30.1.1"
     jest-message-util "30.1.0"
     jest-mock "30.0.5"
     jest-util "30.0.5"
@@ -1216,24 +1216,24 @@ jackspeak@^3.1.2:
   optionalDependencies:
     "@pkgjs/parseargs" "^0.11.0"
 
-jest-diff@30.1.0:
-  version "30.1.0"
-  resolved "https://registry.yarnpkg.com/jest-diff/-/jest-diff-30.1.0.tgz#1d6fce564eafbe6486c878fb35b415ce7c1af114"
-  integrity sha512-DHkvlHONjXknCIzYqFCIqH9uT0G6ZMN0U9Brb64BbQnCmVNcILa3FLTHh21h+E1oNRpaTvupTQTCiOhz2hx7hw==
+jest-diff@30.1.1:
+  version "30.1.1"
+  resolved "https://registry.yarnpkg.com/jest-diff/-/jest-diff-30.1.1.tgz#cfe8327c059178affac17d4c003e7096ad19583c"
+  integrity sha512-LUU2Gx8EhYxpdzTR6BmjL1ifgOAQJQELTHOiPv9KITaKjZvJ9Jmgigx01tuZ49id37LorpGc9dPBPlXTboXScw==
   dependencies:
     "@jest/diff-sequences" "30.0.1"
     "@jest/get-type" "30.1.0"
     chalk "^4.1.2"
     pretty-format "30.0.5"
 
-jest-matcher-utils@30.1.0:
-  version "30.1.0"
-  resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-30.1.0.tgz#e402ea7e7613ae5413839c194d9f825e5f2ef2ba"
-  integrity sha512-A0/O5+WzSmeBrsm1PMOLyKkKUekbCbAtgyViRvJagjMnOsuKQbukiHJy7y+7cTST9pvoi81NyHXz5Fc96UoKUQ==
+jest-matcher-utils@30.1.1:
+  version "30.1.1"
+  resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-30.1.1.tgz#e45419d966cd2e5e7d7ade6da747035c6a3b8afc"
+  integrity sha512-SuH2QVemK48BNTqReti6FtjsMPFsSOD/ZzRxU1TttR7RiRsRSe78d03bb4Cx6D4bQC/80Q8U4VnaaAH9FlbZ9w==
   dependencies:
     "@jest/get-type" "30.1.0"
     chalk "^4.1.2"
-    jest-diff "30.1.0"
+    jest-diff "30.1.1"
     pretty-format "30.0.5"
 
 jest-message-util@30.1.0:
