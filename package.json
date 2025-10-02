@@ -20,7 +20,7 @@
   "devDependencies": {
     "@mikro-orm/cli": "^6.1.0",
     "expect": "30.2.0",
-    "mocha": "11.7.3",
+    "mocha": "11.7.4",
     "nodemon": "^3.0.3",
     "supertest": "^7.0.0"
   },
