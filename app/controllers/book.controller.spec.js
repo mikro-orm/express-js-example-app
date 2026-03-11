@@ -6,7 +6,7 @@ describe('book controller', () => {
 
   before(async () => {
     await DI.orm.reconnect({ dbName: ':memory:', debug: false });
-    await DI.orm.schema.createSchema();
+    await DI.orm.schema.create();
   });
 
   after(async () => {

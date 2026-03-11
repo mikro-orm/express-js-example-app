@@ -1,7 +1,7 @@
 'use strict';
 
 import express from 'express';
-import { EntityManager, EntityRepository, MikroORM, RequestContext } from '@mikro-orm/better-sqlite';
+import { EntityManager, EntityRepository, MikroORM, RequestContext } from '@mikro-orm/sqlite';
 import config from './mikro-orm.config.js';
 import { AuthorController, BookController } from './controllers/index.js';
 import { Author, Book } from './entities/index.js';
