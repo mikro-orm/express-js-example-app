@@ -11,11 +11,11 @@
     "test": "mocha **/*.spec.js"
   },
   "dependencies": {
-    "express": "^5.0.0",
-    "express-promise-router": "^4.1.1",
     "@mikro-orm/core": "^7.0.1",
+    "@mikro-orm/sql-highlighter": "^1.0.0",
     "@mikro-orm/sqlite": "^7.0.1",
-    "@mikro-orm/sql-highlighter": "^1.0.0"
+    "express": "^5.0.0",
+    "express-promise-router": "^4.1.1"
   },
   "devDependencies": {
     "@mikro-orm/cli": "^7.0.1",
@@ -31,5 +31,6 @@
     "configPaths": [
       "./app/mikro-orm.config.js"
     ]
-  }
+  },
+  "packageManager": "yarn@4.13.0"
 }
