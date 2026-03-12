@@ -1,23 +1,24 @@
 'use strict';
 
-import { Collection, EntitySchema } from '@mikro-orm/core';
-import { Publisher } from './Publisher.js';
+import { defineEntity, p } from '@mikro-orm/core';
+import { BaseEntitySchema } from './BaseEntity.js';
 import { Author } from './Author.js';
+import { Publisher } from './Publisher.js';
 import { BookTag } from './BookTag.js';
-import { BaseEntity } from './BaseEntity.js';
 
-/**
- * @property {string} title
- * @property {Author} author
- * @property {Publisher} publisher
- * @property {Collection<BookTag>} tags
- */
-export class Book extends BaseEntity {
+export const BookSchema = defineEntity({
+  extends: BaseEntitySchema,
+  name: 'Book',
+  properties: {
+    title: p.string(),
+    author: () => p.manyToOne(Author),
+    publisher: () => p.manyToOne(Publisher).nullable(),
+    tags: () => p.manyToMany(BookTag).owner().inversedBy('books'),
+  },
+});
 
-  /**
-   * @param {string} title
-   * @param {Author} author
-   */
+export class Book extends BookSchema.class {
+
   constructor(title, author) {
     super();
     this.title = title;
@@ -26,25 +27,4 @@ export class Book extends BaseEntity {
 
 }
 
-export const schema = new EntitySchema({
-  class: Book,
-  extends: 'BaseEntity',
-  properties: {
-    title: { type: 'string' },
-    author: {
-      kind: 'm:1',
-      type: 'Author',
-    },
-    publisher: {
-      kind: 'm:1',
-      type: 'Publisher',
-      nullable: true,
-    },
-    tags: {
-      kind: 'm:n',
-      owner: true,
-      inversedBy: 'books',
-      type: 'BookTag',
-    },
-  },
-});
+BookSchema.setClass(Book);
