@@ -1,27 +1,26 @@
 'use strict';
 
-import { Collection, EntitySchema } from '@mikro-orm/core';
+import { defineEntity, p } from '@mikro-orm/core';
+import { BaseEntitySchema } from './BaseEntity.js';
 import { Book } from './Book.js';
-import { BaseEntity } from './BaseEntity.js';
 
-/**
- * @property {string} name
- * @property {string} email
- * @property {number} age
- * @property {boolean} termsAccepted
- * @property {string[]} identities
- * @property {Date} born
- * @property {Collection<Book>} books
- * @property {Book} favouriteBook
- * @property {number} version
- * @property {string} versionAsString
- */
-export class Author extends BaseEntity {
+export const AuthorSchema = defineEntity({
+  extends: BaseEntitySchema,
+  name: 'Author',
+  properties: {
+    name: p.string(),
+    email: p.string(),
+    age: p.integer().nullable(),
+    termsAccepted: p.boolean(),
+    identities: p.array().nullable(),
+    born: p.datetime().nullable(),
+    books: () => p.oneToMany(Book).mappedBy('author'),
+    favouriteBook: () => p.manyToOne(Book).nullable(),
+  },
+});
 
-  /**
-   * @param {string} name
-   * @param {string} email
-   */
+export class Author extends AuthorSchema.class {
+
   constructor(name, email) {
     super();
     this.name = name;
@@ -31,28 +30,4 @@ export class Author extends BaseEntity {
 
 }
 
-Author.beforeDestroyCalled = 0;
-Author.afterDestroyCalled = 0;
-
-export const schema = new EntitySchema({
-  class: Author,
-  extends: 'BaseEntity',
-  properties: {
-    name: { type: 'string' },
-    email: { type: 'string' },
-    age: { type: 'number', nullable: true },
-    termsAccepted: { type: 'boolean' },
-    identities: { type: 'string[]', nullable: true },
-    born: { type: 'Date', nullable: true },
-    books: {
-      kind: '1:m',
-      mappedBy: 'author',
-      type: 'Book',
-    },
-    favouriteBook: {
-      kind: 'm:1',
-      type: 'Book',
-      nullable: true,
-    },
-  },
-});
+AuthorSchema.setClass(Author);

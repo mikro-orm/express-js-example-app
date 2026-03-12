@@ -1,19 +1,20 @@
 'use strict';
 
-import { Collection, EntitySchema } from '@mikro-orm/core';
+import { defineEntity, p } from '@mikro-orm/core';
+import { BaseEntitySchema } from './BaseEntity.js';
 import { Book } from './Book.js';
-import { BaseEntity } from './BaseEntity.js';
 
-/**
- * @property {number} id
- * @property {string} name
- * @property {Collection<Book>} books
- */
-export class BookTag extends BaseEntity {
+export const BookTagSchema = defineEntity({
+  extends: BaseEntitySchema,
+  name: 'BookTag',
+  properties: {
+    name: p.string(),
+    books: () => p.manyToMany(Book).mappedBy('tags'),
+  },
+});
 
-  /**
-   * @param {string} name
-   */
+export class BookTag extends BookTagSchema.class {
+
   constructor(name) {
     super();
     this.name = name;
@@ -21,16 +22,4 @@ export class BookTag extends BaseEntity {
 
 }
 
-export const schema = new EntitySchema({
-  class: BookTag,
-  extends: 'BaseEntity',
-  properties: {
-    name: { type: 'string' },
-    books: {
-      kind: 'm:n',
-      owner: false,
-      mappedBy: 'tags',
-      type: 'Book',
-    },
-  },
-});
+BookTagSchema.setClass(BookTag);

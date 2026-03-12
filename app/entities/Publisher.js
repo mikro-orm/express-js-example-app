@@ -1,15 +1,20 @@
 'use strict';
 
-import { Collection, EntitySchema } from '@mikro-orm/core';
+import { defineEntity, p } from '@mikro-orm/core';
+import { BaseEntitySchema } from './BaseEntity.js';
 import { Book } from './Book.js';
-import { BaseEntity } from './BaseEntity.js';
 
-/**
- * @property {string} name
- * @property {string} type
- * @property {Collection<Book>} books
- */
-export class Publisher extends BaseEntity {
+export const PublisherSchema = defineEntity({
+  extends: BaseEntitySchema,
+  name: 'Publisher',
+  properties: {
+    name: p.string(),
+    type: p.string(),
+    books: () => p.oneToMany(Book).mappedBy('publisher'),
+  },
+});
+
+export class Publisher extends PublisherSchema.class {
 
   constructor(name = 'asd', type = 'local') {
     super();
@@ -19,20 +24,4 @@ export class Publisher extends BaseEntity {
 
 }
 
-export const schema = new EntitySchema({
-  class: Publisher,
-  extends: 'BaseEntity',
-  properties: {
-    name: {
-      type: 'string',
-    },
-    books: {
-      kind: '1:m',
-      mappedBy: 'publisher',
-      type: 'Book',
-    },
-    type: {
-      type: 'string',
-    },
-  },
-});
+PublisherSchema.setClass(Publisher);
