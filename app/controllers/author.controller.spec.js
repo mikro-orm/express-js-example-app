@@ -1,15 +1,15 @@
 import request from 'supertest';
-import { expect } from 'expect';
+import { expect, describe, it, beforeAll, afterAll } from 'vitest';
 import { app, DI, server } from '../server.js';
 
 describe('author controller', () => {
 
-  before(async () => {
-      await DI.orm.reconnect({ dbName: ':memory:', debug: false });
-      await DI.orm.schema.create();
+  beforeAll(async () => {
+    await DI.orm.reconnect({ dbName: ':memory:', debug: false });
+    await DI.orm.schema.create();
   });
 
-  after(async () => {
+  afterAll(async () => {
     await DI.orm.close(true);
     server.close();
   });
