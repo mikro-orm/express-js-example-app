@@ -112,28 +112,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mikro-orm/cli@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@mikro-orm/cli@npm:7.0.1"
+"@mikro-orm/cli@npm:^7.0.6":
+  version: 7.0.6
+  resolution: "@mikro-orm/cli@npm:7.0.6"
   dependencies:
-    "@mikro-orm/core": "npm:7.0.1"
-    mikro-orm: "npm:7.0.1"
+    "@mikro-orm/core": "npm:7.0.6"
+    mikro-orm: "npm:7.0.6"
     yargs: "npm:17.7.2"
   bin:
-    mikro-orm: cli
-  checksum: 10c0/fa4431d9a146f0685a6fd6ea35e20c6b60703ddcb225fee69e8ffdeb997dff796f70dd80a71193e6ddc42c6439204451db5f435becbf19f289b7526e721f3c2e
+    mikro-orm: cli.js
+  checksum: 10c0/56122e070a1a6755cdbbc088f87e11a16bd1208ba7ea6eed99735e497dd0c21b4cb5c96b2d4c6323d7f66455923659c9eb70e0ea18ff7d66a9d2ddd20ea7dcfb
   languageName: node
   linkType: hard
 
-"@mikro-orm/core@npm:7.0.1, @mikro-orm/core@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@mikro-orm/core@npm:7.0.1"
+"@mikro-orm/core@npm:7.0.6, @mikro-orm/core@npm:^7.0.6":
+  version: 7.0.6
+  resolution: "@mikro-orm/core@npm:7.0.6"
   peerDependencies:
     dataloader: 2.2.3
   peerDependenciesMeta:
     dataloader:
       optional: true
-  checksum: 10c0/c0c87c728e15fe332ce0c2fb2b1517517f4f9af2a66bdd3781256c98f3367a82a843634b1f4069666cd0b10a8407112648e7c9f669412f788ddcd1b024a11f81
+  checksum: 10c0/a21c7dd62a161be7c303a370eac296717b5cb6168619286763d3f5c7099a3aee149ba931f719cce36f0aad560ac88c2dad5fb03ec1ead6fb7f107ba167a09ee9
   languageName: node
   linkType: hard
 
@@ -146,27 +146,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mikro-orm/sql@npm:7.0.1":
-  version: 7.0.1
-  resolution: "@mikro-orm/sql@npm:7.0.1"
+"@mikro-orm/sql@npm:7.0.6":
+  version: 7.0.6
+  resolution: "@mikro-orm/sql@npm:7.0.6"
   dependencies:
-    kysely: "npm:0.28.11"
+    kysely: "npm:0.28.14"
   peerDependencies:
-    "@mikro-orm/core": 7.0.1
-  checksum: 10c0/723e31ff7ee7cbdd3cb53df4d45a3a2cc09a41c5663709772e44d7e2a7abc0fa8b5187829f0bae231dea9ac2a6571f14949b25c90744756d582f9b086ae36c62
+    "@mikro-orm/core": 7.0.6
+  checksum: 10c0/3d27e6062ef1a69caddc9de7cd433dafc239ae6487e28e9024ea3e40c6fc94d90cc6b648951065557625df2c684e667fff5be356965b29bdc43a2c7613f55704
   languageName: node
   linkType: hard
 
-"@mikro-orm/sqlite@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@mikro-orm/sqlite@npm:7.0.1"
+"@mikro-orm/sqlite@npm:^7.0.6":
+  version: 7.0.6
+  resolution: "@mikro-orm/sqlite@npm:7.0.6"
   dependencies:
-    "@mikro-orm/sql": "npm:7.0.1"
-    better-sqlite3: "npm:12.6.2"
-    kysely: "npm:0.28.11"
+    "@mikro-orm/sql": "npm:7.0.6"
+    better-sqlite3: "npm:12.8.0"
+    kysely: "npm:0.28.14"
   peerDependencies:
-    "@mikro-orm/core": 7.0.1
-  checksum: 10c0/8bf751670276b7902be479a28b890cfe2bf1cb0715a00641d50d0fef7f923280c47a709b703e651fc86788d91247c67b32f0dab8b6d55a3d1f8d3ebb98e5e2f2
+    "@mikro-orm/core": 7.0.6
+  checksum: 10c0/7256a3381ced2482e3799cfa411fdc3e5492f4b9153504e502bdfbbdbf4035e5f155a64c00b9daf170a147edf7c97eb44c9d7dbe46632c52cd5218c4bc7298d9
   languageName: node
   linkType: hard
 
@@ -413,14 +413,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"better-sqlite3@npm:12.6.2":
-  version: 12.6.2
-  resolution: "better-sqlite3@npm:12.6.2"
+"better-sqlite3@npm:12.8.0":
+  version: 12.8.0
+  resolution: "better-sqlite3@npm:12.8.0"
   dependencies:
     bindings: "npm:^1.5.0"
     node-gyp: "npm:latest"
     prebuild-install: "npm:^7.1.1"
-  checksum: 10c0/a58fb3f7a7f5469ba0b8de0855aa67396ff34f951a6975746e4b21987f530be6a34427d1d4bd5958cf48c67ed7ba1df038ae163d2ee9d944237f6b8112f6640d
+  checksum: 10c0/b31da8a8a9bd0dd77d44c11fbfc72141a18b7267aed1ee5bedd481397415ace18eb54140706f82aca8149e4102fb2a543f833761e80f9668470ed53d03958515
   languageName: node
   linkType: hard
 
@@ -1590,10 +1590,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kysely@npm:0.28.11":
-  version: 0.28.11
-  resolution: "kysely@npm:0.28.11"
-  checksum: 10c0/3fa4f0617bd015a51de559f00835ac2733e9f0e4c8e2c8bcd091dea4b1a24586c3a445cd4afe02c77e248f232c8c9ba3143989eac3c5a3d233d3e241f53a9f99
+"kysely@npm:0.28.14":
+  version: 0.28.14
+  resolution: "kysely@npm:0.28.14"
+  checksum: 10c0/0d6aad119660ddf7dc12ecbfc0a33ab0333af53aea350aabf55a0b7978e6b69aba246727738f5462f4633aedbed2106f13e58acc2bdb490845f7b7c869871e97
   languageName: node
   linkType: hard
 
@@ -1688,10 +1688,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "mikro-orm-express-js-example@workspace:."
   dependencies:
-    "@mikro-orm/cli": "npm:^7.0.1"
-    "@mikro-orm/core": "npm:^7.0.1"
+    "@mikro-orm/cli": "npm:^7.0.6"
+    "@mikro-orm/core": "npm:^7.0.6"
     "@mikro-orm/sql-highlighter": "npm:^1.0.0"
-    "@mikro-orm/sqlite": "npm:^7.0.1"
+    "@mikro-orm/sqlite": "npm:^7.0.6"
     expect: "npm:30.3.0"
     express: "npm:^5.0.0"
     express-promise-router: "npm:^4.1.1"
@@ -1701,10 +1701,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"mikro-orm@npm:7.0.1":
-  version: 7.0.1
-  resolution: "mikro-orm@npm:7.0.1"
-  checksum: 10c0/1f44801b007a574a2ac8a4978642f496f3b59b5a0f9925edc33cb9c9fef6654ad0140b4e2eb626602d457260828e1e464f2255776d70a4c732dc2925012ef4d7
+"mikro-orm@npm:7.0.6":
+  version: 7.0.6
+  resolution: "mikro-orm@npm:7.0.6"
+  checksum: 10c0/d34b5e519e2ac312eb310ceae8ce8cfce831ee4beff82365d01a1b76f8ffd9954be05d815a0a1a6f75f9aea3b3bb46176065dbc9857090a66d8329f0ea592918
   languageName: node
   linkType: hard
 
