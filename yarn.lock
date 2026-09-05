@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 8
+  version: 10
   cacheKey: 10c0
 
 "@gar/promise-retry@npm:^1.0.0":
@@ -1441,6 +1441,9 @@ __metadata:
     supertest: "npm:^7.0.0"
     vite: "npm:^8.2.2"
     vitest: "npm:^5.0.0"
+  dependenciesMeta:
+    better-sqlite3:
+      built: true
   languageName: unknown
   linkType: soft
 
